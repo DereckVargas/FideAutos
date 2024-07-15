@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layout/plantilla :: head}"></head>
+<body>
+<div class="container mt-3">
+    <h2 th:text="${carro.id == null} ? 'Añadir nuevo carro' : 'Editar Carro'"></h2>
+    <form th:action="@{/carros}" th:object="${carro}" method="post">
+        <div class="form-group">
+            <label for="make">Marca</label>
+            <input type="text" id="marca" class="form-control" th:field="*{marca}" required>
+        </div>
+        <div class="form-group">
+            <label for="model">Modelo</label>
+            <input type="text" id="modelo" class="form-control" th:field="*{modelo}" required>
+        </div>
+        <div class="form-group">
+            <label for="year">Año</label>
+            <input type="number" id="año" class="form-control" th:field="*{año}" required>
+        </div>
+        <div class="form-group">
+            <label for="price">Precio</label>
+            <input type="number" id="precio" class="form-control" th:field="*{precio}" required>
+        </div>
+        <div class="form-group">
+            <label for="available">Disponibilidad</label>
+            <input type="checkbox" id="disponibilidad" th:field="*{disponibilidad}">
+        </div>
+        <button type="submit" class="btn btn-primary">Guardar</button>
+    </form>
+</div>
+<div th:replace="~{layout/plantilla :: footer}"></div>
+</body>
+</html>

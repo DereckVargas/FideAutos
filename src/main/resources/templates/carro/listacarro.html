@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layout/plantilla :: head}"></head>
+<body>
+<div class="container mt-3">
+    <h2>Lista de Carros</h2>
+    <form action="/cars/search" method="get">
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="Marca" name="make">
+        </div>
+        <div class="form-group">
+            <input type="number" class="form-control" placeholder="Año" name="year">
+        </div>
+        <div class="form-group">
+            <input type="number" class="form-control" placeholder="Precio Max" name="price">
+        </div>
+        <button type="submit" class="btn btn-primary">Buscar</button>
+    </form>
+    <table class="table table-striped mt-3">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Marca</th>
+            <th>Modelo</th>
+            <th>Año</th>
+            <th>Precio</th>
+            <th>Disponibilidad</th>
+            <th>Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="carro : ${carros}">
+            <td th:text="${carro.id}"></td>
+            <td th:text="${carro.marca}"></td>
+            <td th:text="${carro.modelo}"></td>
+            <td th:text="${carro.año}"></td>
+            <td th:text="${carro.precio}"></td>
+            <td th:text="${carro.disponibilidad}"></td>
+            <td>
+                <a th:href="@{/carros/editar/{id}(id=${carro.id})}" class="btn btn-warning">Editar</a>
+                <a th:href="@{/carros/eliminar/{id}(id=${carro.id})}" class="btn btn-danger">Eliminar</a>
+                <a th:href="@{/favoritos/agregar/{id}(id=${carro.id})}" class="btn btn-success">Añadir a Favoritos</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<div th:replace="~{layout/plantilla :: footer}"></div>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="~{layout/plantilla :: head}"></head>
+
+    <body>
+        <div class="container mt-3">
+            <h2>Carros Favoritos</h2>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Marca</th>
+                        <th>Modelo</th>
+                        <th>Año</th>
+                        <th>Precio</th>
+                        <th>Disponibilidad</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="favorito : ${favoritos}">
+                        <td th:text="${favorito.carro.id}"></td>
+                        <td th:text="${favorito.carro.marca}"></td>
+                        <td th:text="${favorito.car.modelo}"></td>
+                        <td th:text="${favorito.carro.año}"></td>
+                        <td th:text="${favorito.carro.precio}"></td>
+                        <td th:text="${favorito.carro.disponibilidad}"></td>
+                        <td>
+                            <a th:href="@{/favoritos/eliminar/{id}(id=${favorito.id})}" class="btn btn-danger">Eliminar</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div th:replace="~{layout/plantilla :: footer}"></div>
+    </body>
+</html>

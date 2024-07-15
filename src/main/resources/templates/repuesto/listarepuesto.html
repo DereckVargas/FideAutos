@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="~{layout/plantilla :: head}"></head>
+    <body>
+        <div class="container mt-3">
+            <h2>Lista de Repuestos</h2>
+            <form action="/repuestos/buscar" method="get">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Nombre del repuesto" name="name">
+                </div>
+                <button type="submit" class="btn btn-primary">Buscar</button>
+            </form>
+            <table class="table table-striped mt-3">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Descripcion</th>
+                        <th>Precio</th>
+                        <th>Carro ID</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="repuesto : ${repuestos}">
+                        <td th:text="${repuesto.id}"></td>
+                        <td th:text="${repuesto.nombre}"></td>
+                        <td th:text="${repuesto.descripcion}"></td>
+                        <td th:text="${repuesto.precio}"></td>
+                        <td th:text="${repuesto.carro.id}"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+         <div th:replace="~{layout/plantilla :: footer}"></div>
+    </body>
+
